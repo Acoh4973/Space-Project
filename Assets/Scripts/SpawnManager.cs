@@ -30,6 +30,7 @@ public class SpawnManager : MonoBehaviour
         {
             currentWave++;
             EnemyCount = 3 + (2 * currentWave);
+            aliveEnemies = 0;
             waveCheck();
         }
         if (aliveEnemies == 0 && EnemyCount == 0)

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f6fda2f227bfa499f8fa062428ff2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAi
-  HP: 100
+  HP: 200
   Rank: 1
   Bullet: {fileID: 7820397628072181062, guid: 74e58c5545d83a245a73313777725159, type: 3}
   HomingBullet: {fileID: 7820397628072181062, guid: 2d50b205e1dcd9e4cb55cab9cc961ad3, type: 3}

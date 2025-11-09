@@ -10,7 +10,9 @@ public class UpgradeManager : MonoBehaviour
     public int rapidFireDmg;
     public int spreadFireDmg;
     public int RailgunDmg;
+    public int weaponUpgrades;
 
+    [SerializeField] GameObject[] Upgrades;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,25 +26,43 @@ public class UpgradeManager : MonoBehaviour
         
     }
 
-    void upgradeHP()
+    public void upgradeHP()
     {
         maxHp += 10;
     }
 
-    void upgradeRegen()
+    public void upgradeRegen()
     {
         hpRegen += 1;
     }
-    void upgradeRapid()
+    public void upgradeRapid()
     {
         rapidFireDmg += 2;
+        weaponUpgrades++;
     }
-    void upgradeSpread()
+    public void upgradeSpread()
     {
         spreadFireDmg += 4;
+        weaponUpgrades++;
     }
-    void upgradeRail()
+    public void upgradeRail()
     {
         RailgunDmg += 7;
+        weaponUpgrades++;
+    }
+
+    public void UpgradeRandomizer()
+    {
+        int toggleoff1 = Random.Range(0, 6);
+        int toggleoff2 = Random.Range(0, 6);
+        if (toggleoff2 == toggleoff1 && toggleoff2 == 0) toggleoff2++;
+        if (toggleoff2 == toggleoff1 && toggleoff2 == 5) toggleoff2--;
+
+        for (int i = 0; i < Upgrades.Length; i++)
+        {
+            Upgrades[i].SetActive(true);
+        }
+        Upgrades[toggleoff1].SetActive(false);
+        Upgrades[toggleoff2].SetActive(false);
     }
 }

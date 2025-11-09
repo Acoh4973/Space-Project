@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
     public void endGame()
     {
         statePause();
-        menuActive.SetActive(true);
         menuActive = menuEnd;
+        menuActive.SetActive(true);
     }
 
     void upgradeCheck()
@@ -81,12 +81,11 @@ public class GameManager : MonoBehaviour
         statePause();
         menuActive = menuUpgrade;
         menuActive.SetActive(true);
+        UpgradeManager.instance.UpgradeRandomizer();
     }
 
     public void closeUpgrade()
     {
         stateUnpause();
-        menuActive = null;
-        menuActive.SetActive(false);
     }
 }

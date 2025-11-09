@@ -33,11 +33,14 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        LookAtCursor();
-        RegenHp();
-        shoot();
-        losePowerup();
+        if (!GameManager.instance.isPaused)
+        {
+            Movement();
+            LookAtCursor();
+            RegenHp();
+            shoot();
+            losePowerup();
+        }
     }
 
     void Movement()
@@ -128,11 +131,16 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     public void takeDamage(int amount)
     {
         HP -= amount;
+
+        if (HP <= 0)
+        {
+            GameManager.instance.endGame();
+        }
     }
 
     public void getPowerup(int weapon)
     {
-        powerupTime = 10;
+        powerupTime = 10 + UpgradeManager.instance.weaponUpgrades;
         weaponType = weapon;
     }
 
