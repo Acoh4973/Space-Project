@@ -120,6 +120,7 @@ public class BossAi : MonoBehaviour , iDamage
         {
             SpawnManager.instance.aliveEnemies--;
             GameManager.instance.XP += 10;
+            GameManager.instance.score += (Rank * 10);
             Destroy(gameObject);
         }
     }

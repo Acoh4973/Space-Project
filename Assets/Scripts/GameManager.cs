@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public PlayerController playerScript;
+    public Image playerHPBar;
+    public TMP_Text ScoreShown;
 
     public bool isPaused;
 
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
             }
         }
         upgradeCheck();
+        updateScore();
     }
 
     public void statePause()
@@ -87,5 +92,10 @@ public class GameManager : MonoBehaviour
     public void closeUpgrade()
     {
         stateUnpause();
+    }
+
+    void updateScore()
+    {
+        ScoreShown.text = score.ToString();
     }
 }

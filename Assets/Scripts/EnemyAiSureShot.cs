@@ -79,6 +79,7 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
         {
             SpawnManager.instance.aliveEnemies--;
             GameManager.instance.XP += 1;
+            GameManager.instance.score += Rank;
             dropPowerup();
             Destroy(gameObject);
         }

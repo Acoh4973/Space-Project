@@ -125,12 +125,14 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
             regenTime = 0;
             HP += UpgradeManager.instance.hpRegen;
             if(HP >= UpgradeManager.instance.maxHp) HP = UpgradeManager.instance.maxHp;
+            updateHealthBar();
         }
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updateHealthBar();
 
         if (HP <= 0)
         {
@@ -141,6 +143,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     public void getPowerup(int weapon)
     {
         powerupTime = 10 + UpgradeManager.instance.weaponUpgrades;
+        GameManager.instance.score++;
         weaponType = weapon;
     }
 
@@ -148,5 +151,10 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     {
         powerupTime -= Time.deltaTime;
         if (powerupTime < 0) weaponType = 0;
+    }
+
+    void updateHealthBar()
+    {
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / UpgradeManager.instance.maxHp;
     }
 }

@@ -91,6 +91,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
         {
             if (Rank == 3) deathShot();
             GameManager.instance.XP += 1;
+            GameManager.instance.score += Rank;
             SpawnManager.instance.aliveEnemies--;
             dropPowerup();
             Destroy(gameObject);

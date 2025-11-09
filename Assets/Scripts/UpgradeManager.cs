@@ -53,10 +53,10 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeRandomizer()
     {
-        int toggleoff1 = Random.Range(0, 6);
-        int toggleoff2 = Random.Range(0, 6);
+        int toggleoff1 = Random.Range(0, 5);
+        int toggleoff2 = Random.Range(0, 5);
         if (toggleoff2 == toggleoff1 && toggleoff2 == 0) toggleoff2++;
-        if (toggleoff2 == toggleoff1 && toggleoff2 == 5) toggleoff2--;
+        if (toggleoff2 == toggleoff1 && toggleoff2 == 4) toggleoff2--;
 
         for (int i = 0; i < Upgrades.Length; i++)
         {
