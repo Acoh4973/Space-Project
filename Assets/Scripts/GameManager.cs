@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuEnd;
+    [SerializeField] GameObject menuUpgrade;
 
     public GameObject player;
     public PlayerController playerScript;
@@ -14,10 +15,8 @@ public class GameManager : MonoBehaviour
 
     float timeScaleOrig;
 
-    public int currentWave;
-    public float waveDelayTime;
-    public int currentEnemyCount;
     public int score;
+    public int XP;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -68,11 +67,26 @@ public class GameManager : MonoBehaviour
         menuActive = menuEnd;
     }
 
-    public void enemyCheck()
+    void upgradeCheck()
     {
-        if (currentEnemyCount <= 0)
+        if (XP >= 10)
         {
-
+            XP -= 10;
+            openUpgrade();
         }
+    }
+
+    public void openUpgrade()
+    {
+        statePause();
+        menuActive = menuUpgrade;
+        menuActive.SetActive(true);
+    }
+
+    public void closeUpgrade()
+    {
+        stateUnpause();
+        menuActive = null;
+        menuActive.SetActive(false);
     }
 }
