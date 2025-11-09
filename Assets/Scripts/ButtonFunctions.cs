@@ -62,4 +62,9 @@ public class ButtonFunctions : MonoBehaviour
         UpgradeManager.instance.upgradeRail();
         GameManager.instance.closeUpgrade();
     }
+
+    public void Settings()
+    {
+        //fill in for discussion and beta
+    }
 }
