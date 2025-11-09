@@ -96,7 +96,11 @@ public class playerdamage : MonoBehaviour
                 damageAmount = UpgradeManager.instance.RailgunDmg;
                 break;
             default:
-                damageAmount = 5;
+                int combined = UpgradeManager.instance.rapidFireDmg +
+                                UpgradeManager.instance.spreadFireDmg + 
+                                 UpgradeManager.instance.RailgunDmg;
+                combined /= 3;
+                damageAmount = combined;
                 break;
         }
 

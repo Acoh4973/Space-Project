@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject Boss2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         instance = this;
     }
@@ -62,7 +62,7 @@ public class SpawnManager : MonoBehaviour
         }
         if (currentWave == 15)
         {
-
+            spawnFirstBoss();
         }
         if (currentWave > 15 && currentWave <= 20)
         {
@@ -86,7 +86,7 @@ public class SpawnManager : MonoBehaviour
         }
         if (currentWave == 30)
         {
-
+            spawnSecondBoss();
         }
         if (currentWave > 30)
         {

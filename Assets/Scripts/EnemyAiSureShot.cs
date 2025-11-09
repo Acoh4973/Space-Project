@@ -1,4 +1,3 @@
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +10,7 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
     [SerializeField] Transform AimOffset2;
     [SerializeField] NavMeshAgent Agent;
     [SerializeField] int FOV;
+    [SerializeField] GameObject[] Powerups;
 
     float angleToPlayer;
     Vector3 playerDir;
@@ -79,9 +79,18 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
         {
             SpawnManager.instance.aliveEnemies--;
             GameManager.instance.XP += 1;
+            dropPowerup();
             Destroy(gameObject);
         }
     }
 
+    void dropPowerup()
+    {
+        int Chance = Random.Range(0, 5);
+        if (Chance <= 2)
+        {
+            Instantiate(Powerups[Chance], transform.position, transform.rotation);
+        }
+    }
 }
 

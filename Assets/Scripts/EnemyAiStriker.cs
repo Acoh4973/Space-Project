@@ -11,6 +11,8 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     float turnSpeedCharge;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject DeathBullet;
+    [SerializeField] GameObject[] Powerups;
+
     [SerializeField] Transform AimOffset1;
     [SerializeField] Transform AimOffset2;
     [SerializeField] Transform AimOffset3;
@@ -90,6 +92,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
             if (Rank == 3) deathShot();
             GameManager.instance.XP += 1;
             SpawnManager.instance.aliveEnemies--;
+            dropPowerup();
             Destroy(gameObject);
         }
     }
@@ -133,4 +136,14 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
             Instantiate(Bullet, transform.position, transform.rotation);
         }
     }
+
+    void dropPowerup()
+    {
+        int Chance = Random.Range(0, 5);
+        if (Chance <= 2)
+        {
+            Instantiate(Powerups[Chance], transform.position, transform.rotation);
+        }
+    }
+
 }

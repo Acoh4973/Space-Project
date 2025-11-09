@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
                 stateUnpause();
             }
         }
-
+        upgradeCheck();
     }
 
     public void statePause()

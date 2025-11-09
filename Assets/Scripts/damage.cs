@@ -10,6 +10,7 @@ public class damage : MonoBehaviour
     [SerializeField] int damageRate;
     [SerializeField] int speed;
     [SerializeField] float destroyTime;
+    float homingDelay;
 
     bool isDamaging;
 
@@ -19,7 +20,7 @@ public class damage : MonoBehaviour
         if (type == damageType.moving || type == damageType.homing)
         {
             Destroy(gameObject, destroyTime);
-            if (type == damageType.moving)
+            if (type == damageType.moving || type == damageType.homing)
             {
                 rb.linearVelocity = transform.forward * speed;
             }
@@ -27,7 +28,13 @@ public class damage : MonoBehaviour
     }
     void homing()
     {
-        rb.linearVelocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
+        homingDelay += Time.deltaTime;
+        if (homingDelay >= 1)
+        {
+            homingDelay = 0;
+            Vector3 playerDir = GameManager.instance.player.transform.position - transform.position;
+            rb.linearVelocity = playerDir;
+        }
     }
     // Update is called once per frame
     void Update()
