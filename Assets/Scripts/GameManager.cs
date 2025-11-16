@@ -99,4 +99,24 @@ public class GameManager : MonoBehaviour
     {
         ScoreShown.text = score.ToString();
     }
+
+    public void openSettings()
+    {
+        menuActive.SetActive(false);
+        menuActive = menuSettings;
+        menuActive.SetActive(true);
+    }
+
+    public void closeSettings()
+    {
+        stateUnpause();
+    }
+
+    public void backSettings()
+    {
+        menuActive.SetActive(false);
+        menuActive = menuPause;
+        menuActive.SetActive(true);
+    }
 }
+

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class ButtonFunctions : MonoBehaviour
 {
@@ -63,8 +64,27 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.closeUpgrade();
     }
 
-    public void Settings()
+    public void InGameSettings()
     {
         //fill in for discussion and beta
+        GameManager.instance.openSettings();
     }
+    public void InGameSettingClose()
+    {
+        GameManager.instance.closeSettings();
+    }
+    public void InGameSettingBack()
+    {
+        GameManager.instance.backSettings();
+    }
+
+    public void SettingsOpen(GameObject SettingMenu)
+    {
+        SettingMenu.SetActive(true);
+    }
+    public void SettingsClose(GameObject SettingMenu)
+    {
+        SettingMenu.SetActive(false);
+    }
+
 }
