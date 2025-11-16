@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public Image playerHPBar;
+    public Image playerExpBar;
     public TMP_Text ScoreShown;
 
     public bool isPaused;
@@ -73,12 +74,19 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    void updateExpBar()
+    {
+        playerExpBar.fillAmount = (float)XP * 0.1f;
+    }
+
     void upgradeCheck()
     {
+        updateExpBar();
         if (XP >= 10)
         {
             XP -= 10;
             openUpgrade();
+            updateExpBar();
         }
     }
 
