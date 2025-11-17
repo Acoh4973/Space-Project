@@ -93,10 +93,10 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
                     Vector3 directionToOff2 = AimOffset2.position - transform.position;
                     Quaternion offset1 = Quaternion.LookRotation(directionToOff1);
                     Quaternion offset2 = Quaternion.LookRotation(directionToOff2);
-                    AudioManager.instance.PlaySFX(shootSFX);
                     if (shootTime >= 1)
                     {
                         shootTime = 0;
+                        AudioManager.instance.PlaySFX(shootSFX);
                         Instantiate(SpreadBullet, transform.position, offset1);
                         Instantiate(SpreadBullet, transform.position, transform.rotation);
                         Instantiate(SpreadBullet, transform.position, offset2);
