@@ -12,6 +12,9 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
     [SerializeField] int FOV;
     [SerializeField] GameObject[] Powerups;
 
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip damageSFX;
+
     float angleToPlayer;
     Vector3 playerDir;
     float shootTimer;
@@ -37,8 +40,13 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
         shootTimer += Time.deltaTime;
         if (shootTimer >= 3 - (0.5 * Rank))
         {
+            AudioManager.instance.PlaySFX(shootSFX);
             shootTimer = 0;
-            if (Rank < 3) Instantiate(Bullet, transform.position, transform.rotation);
+            if (Rank < 3)
+            {
+                Instantiate(Bullet, transform.position, transform.rotation);
+                AudioManager.instance.PlaySFX(shootSFX);
+            }
             if (Rank == 3)
             {
                 Vector3 directionToOff1 = AimOffset1.position - transform.position;
@@ -48,6 +56,7 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
                 Instantiate(Bullet, transform.position, offset1);
                 Instantiate(Bullet, transform.position, transform.rotation);
                 Instantiate(Bullet, transform.position, offset2);
+                AudioManager.instance.PlaySFX(shootSFX);
             }
         }
     }
@@ -74,7 +83,7 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        AudioManager.instance.PlaySFX(damageSFX);
         if (HP <= 0)
         {
             SpawnManager.instance.aliveEnemies--;

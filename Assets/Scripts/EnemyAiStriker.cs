@@ -22,6 +22,9 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     [SerializeField] Transform AimOffset7;
     [SerializeField] Transform AimOffset8;
 
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip damageSFX;
+
     [SerializeField] NavMeshAgent Agent;
     [SerializeField] int Fov;
 
@@ -86,7 +89,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        AudioManager.instance.PlaySFX(damageSFX);
         if (HP <= 0)
         {
             if (Rank == 3) deathShot();
@@ -126,7 +129,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
         Instantiate(DeathBullet, transform.position, offset6);
         Instantiate(DeathBullet, transform.position, offset7);
         Instantiate(DeathBullet, transform.position, offset8);
-
+        AudioManager.instance.PlaySFX(shootSFX);
     }
 
     void chargeBullets()
@@ -135,6 +138,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
         {
             shootTimer = 0;
             Instantiate(Bullet, transform.position, transform.rotation);
+            AudioManager.instance.PlaySFX(shootSFX);
         }
     }
 

@@ -251,6 +251,8 @@ MonoBehaviour:
   AimOffset6: {fileID: 0}
   AimOffset7: {fileID: 0}
   AimOffset8: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: 06ada5590eba8d6489b36c6f3c54ff78, type: 3}
+  damageSFX: {fileID: 8300000, guid: ab297b593498a6e47ba84de770477cbe, type: 3}
   Agent: {fileID: 7748796496813995637}
   Fov: 45
 --- !u!65 &6637816419786500400

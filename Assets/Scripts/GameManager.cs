@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuUpgrade;
     [SerializeField] GameObject menuSettings;
 
+    [SerializeField] AudioClip gameplayMusic;
+
     public GameObject player;
     public PlayerController playerScript;
     public Image playerHPBar;
@@ -31,6 +33,11 @@ public class GameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
+    }
+
+    void Start()
+    {
+        AudioManager.instance.PlayMusic(gameplayMusic);
     }
 
     // Update is called once per frame

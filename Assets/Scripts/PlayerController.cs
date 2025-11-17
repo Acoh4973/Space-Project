@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     [SerializeField] Transform AimOffset2;
     [SerializeField] GameObject RailBullet;
 
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip damageSFX;
+
     float regenTime;
     float shootTime;
     float powerupTime;
@@ -82,6 +85,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
                     {
                         shootTime = 0;
                         Instantiate(RapidBullet, transform.position, transform.rotation);
+                        AudioManager.instance.PlaySFX(shootSFX);
                     }
                     break;
                 case 2: // Spread Shot
@@ -89,6 +93,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
                     Vector3 directionToOff2 = AimOffset2.position - transform.position;
                     Quaternion offset1 = Quaternion.LookRotation(directionToOff1);
                     Quaternion offset2 = Quaternion.LookRotation(directionToOff2);
+                    AudioManager.instance.PlaySFX(shootSFX);
                     if (shootTime >= 1)
                     {
                         shootTime = 0;
@@ -103,6 +108,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
                     {
                         shootTime = 0;
                         Instantiate(RailBullet, transform.position, transform.rotation);
+                        AudioManager.instance.PlaySFX(shootSFX);
                     }
 
                     break;
@@ -111,6 +117,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
                     {
                         shootTime = 0;
                         Instantiate(Bullet, transform.position, transform.rotation);
+                        AudioManager.instance.PlaySFX(shootSFX);
                     }
                     break;
             }
@@ -133,6 +140,8 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     {
         HP -= amount;
         updateHealthBar();
+
+        AudioManager.instance.PlaySFX(damageSFX);
 
         if (HP <= 0)
         {

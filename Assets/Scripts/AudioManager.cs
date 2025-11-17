@@ -1,39 +1,69 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    [SerializeField] AudioSource aud;
-    [Range(0, 1)] [SerializeField] public float soundVolume;
-    [Range(0, 1)][SerializeField] public float musicVolume;
-    private const string VolumeKey = "ChosenVolume";
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Audio Sources")]
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+
+    [Header("Volumes")]
+    [Range(0, 1)] public float soundVolume = 1;
+    [Range(0, 1)] public float musicVolume = 1;
+
+    private const string SoundKey = "SoundVolume";
+    private const string MusicKey = "MusicVolume";
+
+    private void Awake()
     {
-        LoadSettings();
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        LoadSettings();
+        ApplyVolumes();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySFX(AudioClip clip)
     {
-        
+        if (clip != null)
+            sfxSource.PlayOneShot(clip, soundVolume);
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    public void ApplyVolumes()
+    {
+        sfxSource.volume = soundVolume;
+        musicSource.volume = musicVolume;
     }
 
     public void SaveSound()
     {
-        PlayerPrefs.SetFloat(VolumeKey, soundVolume);
+        PlayerPrefs.SetFloat(SoundKey, soundVolume);
+        ApplyVolumes();
     }
+
     public void SaveMusic()
     {
-        PlayerPrefs.SetFloat(VolumeKey, musicVolume);
+        PlayerPrefs.SetFloat(MusicKey, musicVolume);
+        ApplyVolumes();
     }
 
     void LoadSettings()
     {
-        soundVolume = PlayerPrefs.GetFloat(VolumeKey, soundVolume);
-        musicVolume = PlayerPrefs.GetFloat(VolumeKey, musicVolume);
+        soundVolume = PlayerPrefs.GetFloat(SoundKey, soundVolume);
+        musicVolume = PlayerPrefs.GetFloat(MusicKey, musicVolume);
     }
 }

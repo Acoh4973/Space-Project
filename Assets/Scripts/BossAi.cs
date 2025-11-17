@@ -17,6 +17,8 @@ public class BossAi : MonoBehaviour , iDamage
     float turnSpeedOrig;
     float turnSpeedCharge;
 
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip damageSFX;
 
     float stateTimer;
     bool ChargeState;
@@ -99,6 +101,7 @@ public class BossAi : MonoBehaviour , iDamage
                 if (shootTimer == 2)
                 {
                     Instantiate(HomingBullet, transform.position, transform.rotation);
+                    AudioManager.instance.PlaySFX(shootSFX);
                 }
             }
         }
@@ -115,7 +118,7 @@ public class BossAi : MonoBehaviour , iDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        AudioManager.instance.PlaySFX(damageSFX);
         if (HP <= 0)
         {
             SpawnManager.instance.aliveEnemies--;

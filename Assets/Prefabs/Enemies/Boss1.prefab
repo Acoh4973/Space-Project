@@ -136,6 +136,8 @@ MonoBehaviour:
   AimOffset2: {fileID: 6186724161125252373}
   Agent: {fileID: 5660797056464445238}
   FOV: 90
+  shootSFX: {fileID: 8300000, guid: 5e1a9f876d3dafd47bc6b3dde25135fa, type: 3}
+  damageSFX: {fileID: 8300000, guid: ab297b593498a6e47ba84de770477cbe, type: 3}
 --- !u!195 &5660797056464445238
 NavMeshAgent:
   m_ObjectHideFlags: 0
