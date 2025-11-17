@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
             Input.GetAxis("Vertical") * Vector3.forward;
         controller.Move(moveDir * shipSpeed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+        inboundWarp();
     }
 
     void LookAtCursor()
@@ -165,5 +166,13 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     void updateHealthBar()
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / UpgradeManager.instance.maxHp;
+    }
+
+    void inboundWarp()
+    {
+        if (transform.position.x > 100) transform.position = new Vector3(-90, 2, transform.position.z);
+        if (transform.position.x < -100) transform.position = new Vector3(90, 2, transform.position.z);
+        if (transform.position.z > 100) transform.position = new Vector3(transform.position.x, 2, -90);
+        if (transform.position.z < -100) transform.position = new Vector3(transform.position.x, 2, 90);
     }
 }

@@ -40,7 +40,6 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
         shootTimer += Time.deltaTime;
         if (shootTimer >= 3 - (0.5 * Rank))
         {
-            AudioManager.instance.PlaySFX(shootSFX);
             shootTimer = 0;
             if (Rank < 3)
             {

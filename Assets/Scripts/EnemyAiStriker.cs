@@ -67,6 +67,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
             Agent.speed = SpeedOrig;
             Agent.angularSpeed = turnSpeedOrig;
         }
+        inboundWarp();
     }
 
     bool canSeePlayer()
@@ -149,6 +150,14 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
         {
             Instantiate(Powerups[Chance], transform.position, transform.rotation);
         }
+    }
+
+    void inboundWarp()
+    {
+        if (transform.position.x > 95) transform.position = new Vector3(-90, 2, transform.position.z);
+        if (transform.position.x < -95) transform.position = new Vector3(90, 2, transform.position.z);
+        if (transform.position.z > 95) transform.position = new Vector3(transform.position.x, 2, -90);
+        if (transform.position.z < -95) transform.position = new Vector3(transform.position.x, 2, 90);
     }
 
 }

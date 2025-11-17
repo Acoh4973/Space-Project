@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da6e6c0892e5c9488bff67601172e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAiSureShot
-  HP: 100
+  HP: 30
   Rank: 2
   Bullet: {fileID: 7820397628072181062, guid: 74e58c5545d83a245a73313777725159, type: 3}
   AimOffset1: {fileID: 0}

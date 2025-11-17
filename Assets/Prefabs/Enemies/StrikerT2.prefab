@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98a9f5819e2d68418bcf505ee45aad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAiStriker
-  HP: 150
+  HP: 90
   Rank: 2
   Bullet: {fileID: 7820397628072181062, guid: 6cb29b9912e5c1849b8fbe3037dac895, type: 3}
   DeathBullet: {fileID: 7820397628072181062, guid: 74e58c5545d83a245a73313777725159, type: 3}

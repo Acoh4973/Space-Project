@@ -44,6 +44,7 @@ public class BossAi : MonoBehaviour , iDamage
         shoot();
         stateToggle();
         movement();
+        inboundWarp();
     }
 
     void stateToggle()
@@ -126,6 +127,14 @@ public class BossAi : MonoBehaviour , iDamage
             GameManager.instance.score += (Rank * 10);
             Destroy(gameObject);
         }
+    }
+
+    void inboundWarp()
+    {
+        if (transform.position.x > 95) transform.position = new Vector3(-90, 2, transform.position.z);
+        if (transform.position.x < -95) transform.position = new Vector3(90, 2, transform.position.z);
+        if (transform.position.z > 95) transform.position = new Vector3(transform.position.x, 2, -90);
+        if (transform.position.z < -95) transform.position = new Vector3(transform.position.x, 2, 90);
     }
 
 }
