@@ -36,7 +36,6 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnManager.instance.aliveEnemies++;
         SpeedOrig = Agent.speed;
         chargeSpeed = Agent.speed * 3;
         turnSpeedOrig = Agent.angularSpeed;
@@ -46,6 +45,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     // Update is called once per frame
     void Update()
     {
+        SpawnManager.instance.aliveEnemies = true;
         shootTimer += Time.deltaTime;
         Agent.SetDestination(GameManager.instance.player.transform.position);
         if (canSeePlayer())
@@ -96,7 +96,6 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
             if (Rank == 3) deathShot();
             GameManager.instance.XP += 1;
             GameManager.instance.score += Rank;
-            SpawnManager.instance.aliveEnemies--;
             dropPowerup();
             Destroy(gameObject);
         }

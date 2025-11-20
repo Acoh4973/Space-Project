@@ -31,7 +31,6 @@ public class BossAi : MonoBehaviour , iDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnManager.instance.aliveEnemies++;
         SpeedOrig = Agent.speed;
         chargeSpeed = Agent.speed * 2;
         turnSpeedOrig = Agent.angularSpeed;
@@ -41,6 +40,7 @@ public class BossAi : MonoBehaviour , iDamage
     // Update is called once per frame
     void Update()
     {
+        SpawnManager.instance.aliveEnemies = true;
         shoot();
         stateToggle();
         movement();
@@ -122,7 +122,6 @@ public class BossAi : MonoBehaviour , iDamage
         AudioManager.instance.PlaySFX(damageSFX);
         if (HP <= 0)
         {
-            SpawnManager.instance.aliveEnemies--;
             GameManager.instance.XP += 10;
             GameManager.instance.score += (Rank * 10);
             Destroy(gameObject);

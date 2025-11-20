@@ -23,13 +23,13 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnManager.instance.aliveEnemies++;
         Agent.SetDestination(GameManager.instance.player.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
+        SpawnManager.instance.aliveEnemies = true;
         lookAtPlayer();
         movement();
         shoot();
@@ -85,7 +85,6 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
         AudioManager.instance.PlaySFX(damageSFX);
         if (HP <= 0)
         {
-            SpawnManager.instance.aliveEnemies--;
             GameManager.instance.XP += 1;
             GameManager.instance.score += Rank;
             dropPowerup();
