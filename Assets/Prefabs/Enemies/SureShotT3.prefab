@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAiSureShot
   HP: 120
   Rank: 3
-  Bullet: {fileID: 7820397628072181062, guid: 74e58c5545d83a245a73313777725159, type: 3}
+  Bullet: {fileID: 7820397628072181062, guid: b047f626a7f825742adf4fab954bb4b7, type: 3}
   AimOffset1: {fileID: 2081476160046790064}
   AimOffset2: {fileID: 7537185462802165019}
   Agent: {fileID: 3647143704994951650}

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, iDamage , iPickup
 {
+    public static PlayerController instance;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] CharacterController controller;
 
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
     }
 
     // Update is called once per frame
@@ -163,7 +165,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
         if (powerupTime < 0) weaponType = 0;
     }
 
-    void updateHealthBar()
+    public void updateHealthBar()
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / UpgradeManager.instance.maxHp;
     }

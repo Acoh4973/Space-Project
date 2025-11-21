@@ -28,12 +28,13 @@ public class UpgradeManager : MonoBehaviour
 
     public void upgradeHP()
     {
-        maxHp += 10;
+        maxHp += 30;
+        PlayerController.instance.updateHealthBar();
     }
 
     public void upgradeRegen()
     {
-        hpRegen += 1;
+        hpRegen += 5;
     }
     public void upgradeRapid()
     {

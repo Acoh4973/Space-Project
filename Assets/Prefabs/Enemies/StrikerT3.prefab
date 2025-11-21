@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 1
   rb: {fileID: 0}
-  damageAmount: 5
+  damageAmount: 25
   damageRate: 1
   speed: 0
   destroyTime: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
   HP: 360
   Rank: 3
   Bullet: {fileID: 7820397628072181062, guid: 6cb29b9912e5c1849b8fbe3037dac895, type: 3}
-  DeathBullet: {fileID: 7820397628072181062, guid: 74e58c5545d83a245a73313777725159, type: 3}
+  DeathBullet: {fileID: 7820397628072181062, guid: b047f626a7f825742adf4fab954bb4b7, type: 3}
   Powerups:
   - {fileID: 4561981009472210678, guid: 180fc00c65998ad4baa16873060da0fb, type: 3}
   - {fileID: 2480766038373892907, guid: 79146626474b2154da7b280b772f21d2, type: 3}
