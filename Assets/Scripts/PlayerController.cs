@@ -180,8 +180,8 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
     {
         if (transform.position.x > 100) transform.position = new Vector3(-90, 2, transform.position.z);
         if (transform.position.x < -100) transform.position = new Vector3(90, 2, transform.position.z);
-        if (transform.position.z > 100) transform.position = new Vector3(transform.position.x, 2, -90);
-        if (transform.position.z < -100) transform.position = new Vector3(transform.position.x, 2, 90);
+        if (transform.position.z > 70) transform.position = new Vector3(transform.position.x, 2, -60);
+        if (transform.position.z < -70) transform.position = new Vector3(transform.position.x, 2, 60);
     }
 
     void weaponTxtChange()
