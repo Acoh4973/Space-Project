@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class BossAi : MonoBehaviour , iDamage
     [SerializeField] Transform AimOffset1;
     [SerializeField] Transform AimOffset2;
     [SerializeField] NavMeshAgent Agent;
+    [SerializeField] Renderer model;
     [SerializeField] int FOV;
 
     float SpeedOrig;
@@ -25,12 +27,14 @@ public class BossAi : MonoBehaviour , iDamage
     float shootTimer;
     float moveDelay = 6;
     float angleToPlayer;
+    Color colorOrig;
     Vector3 playerDir;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        colorOrig = model.material.color;
         SpeedOrig = Agent.speed;
         chargeSpeed = Agent.speed * 2;
         turnSpeedOrig = Agent.angularSpeed;
@@ -126,6 +130,11 @@ public class BossAi : MonoBehaviour , iDamage
             GameManager.instance.score += (Rank * 10);
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
+
     }
 
     void inboundWarp()
@@ -134,6 +143,12 @@ public class BossAi : MonoBehaviour , iDamage
         if (transform.position.x < -95) transform.position = new Vector3(90, 2, transform.position.z);
         if (transform.position.z > 95) transform.position = new Vector3(transform.position.x, 2, -90);
         if (transform.position.z < -95) transform.position = new Vector3(transform.position.x, 2, 90);
+    }
+    IEnumerator flashRed()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOrig;
     }
 
 }

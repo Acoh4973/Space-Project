@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +14,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject DeathBullet;
     [SerializeField] GameObject[] Powerups;
+    [SerializeField] Renderer model;
 
     [SerializeField] Transform AimOffset1;
     [SerializeField] Transform AimOffset2;
@@ -29,6 +32,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     [SerializeField] int Fov;
 
     float chargeTime;
+    Color colorOrig;
     float angleToPlayer;
     Vector3 playerDir;
     float shootTimer;
@@ -36,6 +40,7 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        colorOrig = model.material.color;
         SpeedOrig = Agent.speed;
         chargeSpeed = Agent.speed * 3;
         turnSpeedOrig = Agent.angularSpeed;
@@ -99,6 +104,10 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
             dropPowerup();
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
     }
 
     void deathShot()
@@ -159,4 +168,10 @@ public class EnemyAiStriker : MonoBehaviour, iDamage
         if (transform.position.z < -95) transform.position = new Vector3(transform.position.x, 2, 90);
     }
 
+    IEnumerator flashRed()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOrig;
+    }
 }

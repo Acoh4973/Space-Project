@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,18 +13,21 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
     [SerializeField] NavMeshAgent Agent;
     [SerializeField] int FOV;
     [SerializeField] GameObject[] Powerups;
+    [SerializeField] Renderer model;
 
     [SerializeField] AudioClip shootSFX;
     [SerializeField] AudioClip damageSFX;
 
     float angleToPlayer;
     Vector3 playerDir;
+    Color colorOrig;
     float shootTimer;
     float moveDelay;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        colorOrig = model.material.color;
         Agent.SetDestination(GameManager.instance.player.transform.position);
     }
 
@@ -91,6 +96,11 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
             dropPowerup();
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
+
     }
 
     void dropPowerup()
@@ -109,6 +119,11 @@ public class EnemyAiSureShot : MonoBehaviour , iDamage
         if (transform.position.z > 95) transform.position = new Vector3(transform.position.x, 2, -90);
         if (transform.position.z < -95) transform.position = new Vector3(transform.position.x, 2, 90);
     }
-
+    IEnumerator flashRed()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOrig;
+    }
 }
 

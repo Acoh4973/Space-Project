@@ -243,6 +243,7 @@ MonoBehaviour:
   - {fileID: 4561981009472210678, guid: 180fc00c65998ad4baa16873060da0fb, type: 3}
   - {fileID: 2480766038373892907, guid: 79146626474b2154da7b280b772f21d2, type: 3}
   - {fileID: 6567156537429507874, guid: 4791b9761414288468b2084ae16e2cb2, type: 3}
+  model: {fileID: 9188229085284420100}
   AimOffset1: {fileID: 0}
   AimOffset2: {fileID: 0}
   AimOffset3: {fileID: 0}
