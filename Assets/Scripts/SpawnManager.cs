@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviour
     float waveDelayTime;
     int EnemyCount;
     public bool aliveEnemies;
+    float aliveEnemiesTime;
+    bool EnemyCapped;
     float enemyCheck;
 
     [SerializeField] Transform[] spawnPositions;
@@ -26,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        waveDelayTime -= Time.deltaTime;
+        if (!EnemyCapped) waveDelayTime -= Time.deltaTime;
         if (waveDelayTime <= 0)
         {
             currentWave++;
@@ -37,6 +39,7 @@ public class SpawnManager : MonoBehaviour
         {
             waveDelayTime -= Time.deltaTime * 15;
         }
+        capEnemies();
         EnemyCheck();
     }
 
@@ -154,6 +157,19 @@ public class SpawnManager : MonoBehaviour
         {
             aliveEnemies = false;
             enemyCheck = 0;
+        }
+    }
+
+    void capEnemies()
+    {
+        if (aliveEnemies)
+        {
+            aliveEnemiesTime += Time.deltaTime;
+            if (aliveEnemiesTime > 90) EnemyCapped = true;
+        }
+        else
+        {
+            aliveEnemiesTime = 0;
         }
     }
 }
