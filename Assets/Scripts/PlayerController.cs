@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
             RegenHp();
             shoot();
             losePowerup();
+            updatePowerupTimer();
         }
     }
 
@@ -157,12 +158,17 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
         powerupTime = 10 + UpgradeManager.instance.weaponUpgrades;
         GameManager.instance.score++;
         weaponType = weapon;
+        weaponTxtChange();
     }
 
     void losePowerup()
     {
         powerupTime -= Time.deltaTime;
-        if (powerupTime < 0) weaponType = 0;
+        if (powerupTime < 0)
+        {
+            weaponType = 0;
+            weaponTxtChange();
+        }
     }
 
     public void updateHealthBar()
@@ -176,5 +182,29 @@ public class PlayerController : MonoBehaviour, iDamage , iPickup
         if (transform.position.x < -100) transform.position = new Vector3(90, 2, transform.position.z);
         if (transform.position.z > 100) transform.position = new Vector3(transform.position.x, 2, -90);
         if (transform.position.z < -100) transform.position = new Vector3(transform.position.x, 2, 90);
+    }
+
+    void weaponTxtChange()
+    {
+        switch (weaponType)
+        {
+            case 1:
+                GameManager.instance.PowerupCur.text = "Rapid-Fire";
+                break;
+            case 2:
+                GameManager.instance.PowerupCur.text = "Spread-Shot";
+                break;
+            case 3:
+                GameManager.instance.PowerupCur.text = "RailGun";
+                break;
+            default:
+                GameManager.instance.PowerupCur.text = "No-Powerup";
+                break;
+        }
+    }
+
+    void updatePowerupTimer()
+    {
+        GameManager.instance.playerPowerupTime.fillAmount = powerupTime / (10 + UpgradeManager.instance.weaponUpgrades);
     }
 }

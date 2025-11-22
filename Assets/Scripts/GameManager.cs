@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public Image playerExpBar;
     public TMP_Text ScoreShown;
+    public Image playerPowerupTime;
+    public TMP_Text PowerupCur;
 
     public bool isPaused;
 
